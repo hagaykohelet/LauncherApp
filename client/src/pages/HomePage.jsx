@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import '../style/HomePage.css'
-import { launcherStore } from '../store/launchersStore'
+import { useLauncherStore } from '../store/launchersStore'
 import { useNavigate } from 'react-router-dom'
 function HomePage() {
     const navigate = useNavigate()
-    const launchers = launcherStore(state => state.launchers)
-    const setLauncher = launcherStore((state) => state.setLauncher)
+    const launchers = useLauncherStore(state => state.launchers)
+    const setLauncher = useLauncherStore((state) => state.setLauncher)
+    const getId = useLauncherStore((state) => state.getid)
+    
+
     useEffect(() => {
         setLauncher()
     }, [])
@@ -22,6 +25,7 @@ function HomePage() {
                     <th>ROCKET TYPE</th>
                     <th>LATITUDE</th>
                     <th>LONGITUDE</th>
+                    <th>show details</th>
                 </tr>
                 {launchers?.map((item, index) =>
                     <tr key={index}>
@@ -31,6 +35,7 @@ function HomePage() {
                         <td>{item.rocketType}</td>
                         <td>{item.latitude}</td>
                         <td>{item.longitude}</td>
+                        <td><button onClick={()=>{navigate('/launcher-details');getId(item.id)}}>click here</button></td>
                     </tr>
                 )}
             </table>
