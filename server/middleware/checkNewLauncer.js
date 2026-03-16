@@ -11,7 +11,7 @@ export default function newLauncerCheck(req, res, next) {
             return res.status(401).json({ msg: `${key} not allow` })
         }
     }
-    if (typeof newLauncher.city !== "string" || typeof newLauncher.rocketType !== "string" || typeof newLauncher.name !== "string") {
+    if (typeof newLauncher.city !== "string" || typeof newLauncher.name !== "string") {
         return res.status(401).json({ msg: "the type of keys not allowed" })
     }
     if (!newLauncher.city || !newLauncher.rocketType || !newLauncher.latitude || !newLauncher.longitude || !newLauncher.name
@@ -19,12 +19,9 @@ export default function newLauncerCheck(req, res, next) {
     ) {
         return res.status(401).json({ msg: "please enter a value" })
     }
-    if (typeof newLauncher.latitude != "number" || typeof newLauncher.longitude != "number") {
-        return res.status(401).json({ msg: "the type of keys not allowed" })
-    }
-    if (!allowRocketType.includes(newLauncher.rocketType)) {
+    if (!(allowRocketType.includes(newLauncher.rocketType))) {
         return res.status(401).json({ msg: "this rocket type not valid!" })
     }
-    next()
+    return next()
 
 } 
