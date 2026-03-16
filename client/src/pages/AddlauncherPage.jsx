@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 function AddlauncherPage() {
     const [name, setName] = useState()
-    const [rocketType, setRocketType] = useState()
+    const [rocketType, setRocketType] = useState("Shahab3")
     const [latitude, setLatitude] = useState()
     const [longitude, setLongitude] = useState()
     const [city, setCity] = useState()
@@ -24,14 +24,15 @@ function AddlauncherPage() {
             })
         })
         if (!res.ok) {
+            setSuccess(false)
             setError(true)
         }
         else {
             const data = await res.json()
+            setError(false)
             setSuccess(true)
         }
     }
-    console.log(success)
     return (
         <div>
             <h1>new launcher</h1>
@@ -49,7 +50,7 @@ function AddlauncherPage() {
 
                 <button type='submit'>send</button>
             </form>
-            {error && <p>{error}</p>}
+            {error && <p>failed to add launcher</p>}
             {success && <p>new launcher added successfully</p>}
         </div>
     )
