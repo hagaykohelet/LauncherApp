@@ -38,7 +38,7 @@ launchersRoute.get('/:id', async (req, res) => {
     }
 })
 
-launchersRoute.post('/', newLauncerCheck, async (req, res) => {
+launchersRoute.post('/',newLauncerCheck, async (req, res) => {
     try {
         const newLauncher = req.body
         const { data, error } = await supabaseConeect
@@ -52,6 +52,7 @@ launchersRoute.post('/', newLauncerCheck, async (req, res) => {
         return res.status(201).json({ data })
 
     } catch (err) {
+        console.log(err)
         return res.status(400).json({ error: String(err) })
     }
 })
