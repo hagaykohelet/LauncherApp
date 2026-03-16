@@ -11,7 +11,6 @@ function AddlauncherPage() {
     const [error, setError] = useState(false)
 
 
-
     async function postNewLauncher(e) {
         e.preventDefault()
 
