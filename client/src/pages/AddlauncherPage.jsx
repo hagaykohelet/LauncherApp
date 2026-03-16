@@ -32,7 +32,6 @@ function AddlauncherPage() {
             setSuccess(true)
         }
     }
-    console.log(success)
     return (
         <div>
             <h1>new launcher</h1>
