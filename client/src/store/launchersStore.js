@@ -10,6 +10,7 @@ export const useLauncherStore = create((set) => ({
         const data = await res.json()
         set({ launchers: data.launchers })
     },
-    filterByType:(type)=>set({launchers: state.launchers.filter((item)=>item.rocketType === type)})
+    filterByType:(type)=>set((state)=>({launchers: state.launchers.filter((item)=>item.rocketType.includes(type))})),
+    filterByCity:(city)=>set((state)=>({launchers: state.launchers.filter((item)=>item.city.includes(city))}))
     
 }))
