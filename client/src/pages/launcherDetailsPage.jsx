@@ -7,7 +7,6 @@ function LauncherDetailsPage() {
     const [launcher, setLauncher] = useState([])
     
     const id = useLauncherStore((state) => state.id)
-
     async function getLauncherOnId(id) {
         try {
             const res = await fetch(`http://localhost:3000/api/launchers/${id}`)
