@@ -38,7 +38,7 @@ launchersRoute.get('/:id', async (req, res) => {
     }
 })
 
-launchersRoute.post('/',newLauncerCheck ,async (req, res) => {
+launchersRoute.post('/', newLauncerCheck, async (req, res) => {
     try {
         const newLauncher = req.body
         const { data, error } = await supabaseConeect
@@ -49,12 +49,30 @@ launchersRoute.post('/',newLauncerCheck ,async (req, res) => {
             console.log(error.message)
             return res.status(400).json({ error: String(error.message) })
         }
-        return res.status(201).json({data})
-        
+        return res.status(201).json({ data })
+
     } catch (err) {
         return res.status(400).json({ error: String(err) })
     }
 })
 
-
+launchersRoute.delete('/:id', async (req, res) => {
+    try {
+        const launcerId = req.params.id
+        const { data, error } = await supabaseConeect
+            .from("launchers")
+            .delete()
+            .eq("id", launcerId)
+            .select()
+        if (error) {
+            return res.status(400).json({ error: error.message })
+        }
+        if (data.length === 0) {
+            return res.status(404).json({ message: "this id not found!" })
+        }
+        return res.status(200).json({ message: "deleted successfully" })
+    } catch (err) {
+        return res.status(400).json({ error: String(err) })
+    }
+})
 export default launchersRoute
