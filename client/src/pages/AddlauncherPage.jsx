@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
 
 function AddlauncherPage() {
     const [name, setName] = useState()
@@ -38,7 +39,7 @@ function AddlauncherPage() {
     }
     return (
         <div>
-            <h1>new launcher</h1>
+            <Navbar title={"new launcher"} />
             <form onSubmit={postNewLauncher}>
                 <input type="text" onChange={(e) => setName(e.target.value)} placeholder='enter name' />
                 <input type="text" onChange={(e) => setCity(e.target.value)} placeholder='enter city' />

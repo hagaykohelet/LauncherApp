@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import '../style/HomePage.css'
-import { useLauncherStore } from '../store/launchersStore'
+import { useLauncherStore } from '../store/Store'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 function HomePage() {
 
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ function HomePage() {
             }
             else {
                 const data = await res.json()
-                setLauncher(token)
+                setLauncher("http://localhost:3000/api/launchers",token)
             }
         } catch (err) {
             console.log(err)
@@ -32,11 +33,11 @@ function HomePage() {
     }
 
     useEffect(() => {
-        setLauncher(token)
+        setLauncher("http://localhost:3000/api/launchers",token)
     }, [])
     return (
         <div className='home-page'>
-            <h1>all launchers page</h1>
+            <Navbar title="launchers page"/>
             <input type="text" onChange={(e) => { filterByType(e.target.value) }} placeholder='search by type' />
             <input type="text" onChange={(e) => { filterByCity(e.target.value) }} placeholder='search by city' />
             <button onClick={() => navigate('/add-launcher')}>add new launcher</button>
