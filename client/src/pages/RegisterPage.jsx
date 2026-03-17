@@ -56,8 +56,8 @@ function RegisterPage() {
           <th>EMAIL</th>
           <th>USER TYPE</th>
           <th>LAST LOGIN</th>
-          <th>DELETE</th>
           <th>EDIT</th>
+          <th>DELETE</th>
         </tr>
         {users?.map((item, index) =>
           <tr key={index}>
