@@ -1,5 +1,4 @@
 import express from 'express'
-import supabaseConeect from '../connectionToDB/supabase.js'
 import newLauncerCheck from '../middleware/checkNewLauncer.js'
 import { deleteLauncherById, getById, getController, postNewLauncher } from '../controllers/launcher_controller.js'
 
