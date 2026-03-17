@@ -9,14 +9,17 @@ function AddlauncherPage() {
     const [city, setCity] = useState()
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
-
+    const token = localStorage.getItem("token")
 
     async function postNewLauncher(e) {
         e.preventDefault()
 
         const res = await fetch("http://localhost:3000/api/launchers", {
             method: "POST",
-            headers: { "Content-Type": 'application/json' },
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify({
                 city: city, rocketType: rocketType,
                 latitude: latitude, longitude: longitude,

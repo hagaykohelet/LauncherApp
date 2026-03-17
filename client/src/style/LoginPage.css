@@ -1,0 +1,15 @@
+.LoginPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    margin: 2%;
+}

@@ -7,15 +7,14 @@ function HomePage() {
 
     const navigate = useNavigate()
     const { launchers, setLauncher, getId,  filterByType, filterByCity } = useLauncherStore()
-
+    const token = localStorage.getItem("token")
     async function deleteLauncher(id) {
-
         try {
             const res = await fetch(`http://localhost:3000/api/launchers/${id}`,
                 {
                     method: 'DELETE',
                     headers: {
-                        'Content-type': 'application/json'
+                        "Authorization": `Bearer ${token}`
                     }
                 }
             )
@@ -25,7 +24,7 @@ function HomePage() {
             }
             else {
                 const data = await res.json()
-                setLauncher()
+                setLauncher(token)
             }
         } catch (err) {
             console.log(err)
@@ -33,7 +32,7 @@ function HomePage() {
     }
 
     useEffect(() => {
-        setLauncher()
+        setLauncher(token)
     }, [])
     return (
         <div className='home-page'>
@@ -41,7 +40,7 @@ function HomePage() {
             <input type="text" onChange={(e) => { filterByType(e.target.value) }} placeholder='search by type' />
             <input type="text" onChange={(e) => { filterByCity(e.target.value) }} placeholder='search by city' />
             <button onClick={() => navigate('/add-launcher')}>add new launcher</button>
-            <button onClick={setLauncher}>show all</button>
+            <button onClick={()=>{setLauncher(token)}}>show all</button>
             <table>
                 <tr>
                     <th>ID</th>

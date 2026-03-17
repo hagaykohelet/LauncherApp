@@ -5,11 +5,15 @@ import { useState } from 'react'
 
 function LauncherDetailsPage() {
     const [launcher, setLauncher] = useState([])
-    
+    const token = localStorage.getItem("token")
     const id = useLauncherStore((state) => state.id)
     async function getLauncherOnId(id) {
         try {
-            const res = await fetch(`http://localhost:3000/api/launchers/${id}`)
+            const res = await fetch(`http://localhost:3000/api/launchers/${id}`, {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            }
+            )
             if (!res.ok) {
                 console.log(res)
             }
