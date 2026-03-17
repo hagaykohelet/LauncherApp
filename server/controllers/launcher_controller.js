@@ -1,9 +1,9 @@
-import supabaseConeect from "../connectionToDB/supabase.js"
+import supabaseConnect from "../connectionToDB/supabase.js"
 
 
 export async function getController(req, res) {
     try {
-        const { data, error } = await supabaseConeect
+        const { data, error } = await supabaseConnect
             .from("launchers")
             .select()
         if (error) {
@@ -19,7 +19,7 @@ export async function getController(req, res) {
 export async function getById(req, res) {
     try {
         const launchrId = req.params.id
-        const { data, error } = await supabaseConeect
+        const { data, error } = await supabaseConnect
             .from("launchers")
             .select()
             .eq("id", launchrId)
@@ -38,7 +38,7 @@ export async function getById(req, res) {
 export async function postNewLauncher(req, res){
      try {
         const newLauncher = req.body
-        const { data, error } = await supabaseConeect
+        const { data, error } = await supabaseConnect
             .from('launchers')
             .insert(newLauncher)
             .select()
@@ -49,7 +49,6 @@ export async function postNewLauncher(req, res){
         return res.status(201).json({ data })
 
     } catch (err) {
-        console.log(err)
         return res.status(400).json({ error: String(err) })
     }
 }
@@ -57,7 +56,7 @@ export async function postNewLauncher(req, res){
 export async function deleteLauncherById(req, res){
     try {
         const launcerId = req.params.id
-        const { data, error } = await supabaseConeect
+        const { data, error } = await supabaseConnect
             .from("launchers")
             .delete()
             .eq("id", launcerId)
