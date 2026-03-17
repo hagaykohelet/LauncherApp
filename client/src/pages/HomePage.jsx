@@ -9,6 +9,7 @@ function HomePage() {
     const navigate = useNavigate()
     const { launchers, setLauncher, getId,  filterByType, filterByCity } = useLauncherStore()
     const token = localStorage.getItem("token")
+    const user_type = localStorage.getItem("user type")
     async function deleteLauncher(id) {
         try {
             const res = await fetch(`http://localhost:3000/api/launchers/${id}`,
@@ -50,7 +51,7 @@ function HomePage() {
                     <th>ROCKET TYPE</th>
                     <th>LATITUDE</th>
                     <th>LONGITUDE</th>
-                    <th>show details</th>
+                   {user_type !== "air force" && <th>show details</th>}
                 </tr>
                 {launchers?.map((item, index) =>
                     <tr key={index}>
@@ -60,8 +61,8 @@ function HomePage() {
                         <td>{item.rocketType}</td>
                         <td>{item.latitude}</td>
                         <td>{item.longitude}</td>
-                        <td><button onClick={() => { navigate('/launcher-details'); getId(item.id) }}>click here</button></td>
-                        <td><button onClick={() => { deleteLauncher(item.id) }}>delete launcher</button></td>
+                       {user_type !== "air force" && <td><button onClick={() => { navigate('/launcher-details'); getId(item.id) }}>click here</button></td>}
+                       {user_type !== "air force" && <td><button onClick={() => { deleteLauncher(item.id) }}>delete launcher</button></td>}
                     </tr>
                 )}
             </table>
