@@ -11,7 +11,7 @@ export async function checkNewUserObj(req, res, next){
     }
     for (let key of allowKeysUser){
         if (!newUserKeys.includes(key)){
-            return res.status(400),json({error:"missing keys!"})
+            return res.status(400).json({error:"missing keys!"})
         }
     }
     for (let key of newUserValue){

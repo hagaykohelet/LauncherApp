@@ -20,6 +20,7 @@ function LoginPage() {
             else {
                 const data = await res.json()
                 localStorage.setItem("token", data.token)
+                localStorage.setItem("user type", data.user_type)
                 navigate('/home')
             }
         } catch (err) {

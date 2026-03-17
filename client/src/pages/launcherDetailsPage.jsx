@@ -1,7 +1,8 @@
 import React from 'react'
-import { useLauncherStore } from '../store/launchersStore'
+import { useLauncherStore } from '../store/Store'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
 
 function LauncherDetailsPage() {
     const [launcher, setLauncher] = useState([])
@@ -30,7 +31,7 @@ function LauncherDetailsPage() {
     }, [])
     return (
         <div>
-            <h1>detail of launcher {launcher.id}</h1>
+            <Navbar title={`detail of launcher ${launcher.id}`}/>
             <p>name: {launcher.name}</p>
             <p>city: {launcher.city}</p>
             <p>rocket type: {launcher.rocketType}</p>

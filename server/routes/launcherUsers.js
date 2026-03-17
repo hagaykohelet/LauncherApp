@@ -93,7 +93,7 @@ launcherUsersRoute.post('/login', validateLogin, async (req, res) => {
             return res.status(400).json({ msg: `${username} not found` })
         }
         const token = createToken({ username: username, password: password, user_type: data[0].user_type })
-        return res.status(200).json({ token: token })
+        return res.status(200).json({ token: token, user_type: data[0].user_type })
     } catch (err) {
         return res.status(400).json({ error: String(err) })
     }
@@ -115,7 +115,7 @@ launcherUsersRoute.get('/getUser', verifyToken, async (req, res) => {
         if (data.length === 0) {
             return res.status(404).json({ error: "user not found" })
         }
-        return res.status(200).json({ data })
+        return res.status(200).json({username: data[0].username, user_type:data[0].user_type})
     } catch (err) {
         return res.status(400).json({ error: String(err) })
     }
