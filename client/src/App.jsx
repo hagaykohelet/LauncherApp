@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage'
 import ProtectedRoute from './Providers/ProtectedRoute'
 import './App.css'
 import RegisterPage from './pages/RegisterPage'
+import EditUserPage from './pages/EditUserPage'
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/add-launcher' element={<AddlauncherPage />} />
             <Route path='/launcher-details' element={<LauncherDetailsPage />} />
             <Route path='/registerNewUser' element={<RegisterPage />} />
+            <Route path='/editUser' element={<EditUserPage />} />
           </Route>
 
         </Routes>

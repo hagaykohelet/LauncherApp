@@ -46,7 +46,7 @@ function AddlauncherPage() {
                 <input type="number" onChange={(e) => setLatitude(e.target.value)} placeholder='enter latitude' />
                 <input type="number" onChange={(e) => setLongitude(e.target.value)} placeholder='enter longitude' />
                 <select name="rocketType" onChange={(e) => setRocketType(e.target.value)}>
-                    <option value="Shahab3">Shahab3</option>
+                    <option value="Shahab3" selected>Shahab3</option>
                     <option value="Fetah110">Fetah110</option>
                     <option value="Radwan">Radwan</option>
                     <option value="Kheibar">Kheibar</option>
