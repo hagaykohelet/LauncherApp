@@ -30,7 +30,6 @@ launcherUsersRoute.put('/register/update/:id', verifyToken, checkAdminToken, che
     try {
         const userId = req.params.id
         const updateUser = req.body
-        console.log(updateUser)
         const { data, error } = await supabaseConnect
             .from('launchers_users')
             .update(updateUser)
