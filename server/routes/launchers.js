@@ -6,12 +6,12 @@ import { checkIntelligenceToken, checkUserType } from '../middleware/checkTokenU
 
 const launchersRoute = express()
 
-launchersRoute.get('/', verifyToken, checkUserType , getController)
+launchersRoute.get('/', verifyToken, checkUserType, getController)
 
-launchersRoute.get('/:id', verifyToken, checkUserType,getById)
+launchersRoute.get('/:id', verifyToken, checkUserType, getById)
 
-launchersRoute.post('/',verifyToken,newLauncerCheck,checkIntelligenceToken,postNewLauncher)
+launchersRoute.post('/', verifyToken, newLauncerCheck, checkIntelligenceToken, postNewLauncher)
 
-launchersRoute.delete('/:id', verifyToken,checkIntelligenceToken,deleteLauncherById)
+launchersRoute.delete('/:id', verifyToken, checkIntelligenceToken, deleteLauncherById)
 
 export default launchersRoute
