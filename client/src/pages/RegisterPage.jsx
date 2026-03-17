@@ -14,8 +14,6 @@ function RegisterPage() {
     user_type:"",
   })
   
-
-  
   async function saveUser(e) {
     e.preventDefault()
     try {
@@ -30,7 +28,6 @@ function RegisterPage() {
       }
       else {
         const data = await res.json()
-        setMessage("agent added successfully")
         setUsers("http://localhost:3000/api/auth/getAllUsers",token)
       }
 
@@ -40,7 +37,9 @@ function RegisterPage() {
     }
   }
 
-
+async function deleteUser(id){
+  const res = await fetch('')
+}
   useEffect(() => {
     setUsers("http://localhost:3000/api/auth/getAllUsers",token)
   }, [])
@@ -59,16 +58,16 @@ function RegisterPage() {
           <th>DELETE</th>
           <th>EDIT</th>
         </tr>
-        {users?.map((item, index) =>
+        {users?.map((user, index) =>
           <tr key={index}>
-            <td>{item.id}</td>
-            <td>{item.username}</td>
-            <td>{item.password}</td>
-            <td>{item.email}</td>
-            <td>{item.user_type}</td>
-            <td>{item.last_login}</td>
+            <td>{user.id}</td>
+            <td>{user.username}</td>
+            <td>{user.password}</td>
+            <td>{user.email}</td>
+            <td>{user.user_type}</td>
+            <td>{user.last_login}</td>
             <td><button >edit user</button></td>
-            <td><button >delete user</button></td>
+            <td><button onClick={()=>{deleteUser(user.id)}}>delete user</button></td>
           </tr>
         )}
       </table>
